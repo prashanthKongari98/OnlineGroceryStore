@@ -1,0 +1,29 @@
+
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+  margin-right: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Highlight active link */
+.active {
+  font-weight: bold;
+  color: #ce2b3c;
+}
+
+

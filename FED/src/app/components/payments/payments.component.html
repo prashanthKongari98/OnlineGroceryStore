@@ -1,0 +1,79 @@
+<div class="mr-l-132">
+    <h2 class="c-w">Enter Payment Details</h2>
+</div>
+
+
+
+<section class="payment-container">
+  <div class="form-group">
+        <label class="mr-r-15 margins label-style-register">
+            Card Type:
+            <select [(ngModel)]="selectedPaymentMethod" class=" mr-l-90 mr-r-15 select-style" placeholder="Select Card Type">
+
+                <option value="debit">Debit Card</option>
+                <option value="credit">Credit Card</option>
+            </select>
+        </label>
+    </div>
+    <div class="form-group">
+
+        <label class="mr-r-15  margins label-style-register">
+            Card Number:
+            <input class="mr-r-15  mr-l-61 select-style"
+                type="number"
+                [(ngModel)]="accountNumber"
+
+            />
+        </label>
+        <span  *ngIf="!cardNumberValidation()" class="error-message"> Invalid Card Number</span> 
+    </div>
+
+    <div class="form-group">
+        <label class="mr-r-15 margins label-style-register">
+            Card Holder Name:
+            <input class="mr-r-15  mr-l-15 select-style"
+                type="text"
+                [(ngModel)]="cardHolderName"
+               
+            />
+        </label>
+
+    </div>
+    <div class="form-group">
+        <label for="expireDate" class="mr-r-15 margins label-style-register" >Expiry Date(MM/YY)</label>
+        <input type="text" id="expiryDate" class="mr-r-15  mr-l-15"
+            name="expiryDate" [(ngModel)]="expireDate" (change) ="validateExpiryDate($event)"required>
+            <span  *ngIf="!isMonthValid || !isFutureDate" class="error-message"> Invalid Expiry Date</span>
+    </div>
+    <div class="form-group">
+        <label class="mr-r-15 margins label-style-register">
+            CVV:
+            <input class="mr-r-15 mr-l-53 select-style"
+                type="number"
+                [(ngModel)]="cvv"
+            />
+        </label>
+        <span  *ngIf="!securityCodeValidation()" class="error-message"> Invalid Security Code</span>
+    </div>
+    <div class="form-group">
+        <label class="mr-r-15 margins label-style-register">
+            Billing Address
+            <input class="mr-r-15 mr-l-53 select-style"
+                type="text"
+                [(ngModel)]="billingAddress"
+            />
+        </label>
+    </div>
+
+
+
+</section>
+
+<section class="payment-container">
+    <div class="form-group">
+      <button type="submit" class="sub-btn" (click)="onSubmit()">Submit</button>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="sub-btn" (click)="onCancel()">Cancel</button>
+      </div>
+  </section>

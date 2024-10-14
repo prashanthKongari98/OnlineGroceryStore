@@ -1,0 +1,32 @@
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+            <th>
+                Delivery Executive Name
+            </th>
+            <th>
+                Delivery Executive Phone Number
+            </th>
+            <th>
+                Delivery Executive Email
+            </th>
+            <th>
+                
+            </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let executive of deliveryExecutives">
+                <td> {{executive.name}}</td>
+                <td> {{executive.phoneNumber}}</td>
+                <td> {{executive.email}}</td>
+                <td><div>
+                    <button class="mr-l-10 sub-btn" *ngIf="executive.isApprovedByAdmin == '0'"(click)="updateDetails(executive, '1')">Approve</button>
+                    <button class="mr-l-10 sub-btn" *ngIf="executive.isApprovedByAdmin == '0'" (click)="updateDetails(executive,'2')">Reject</button>
+                </div></td>
+            </tr>
+        </tbody>
+       
+    </table>
+</div>

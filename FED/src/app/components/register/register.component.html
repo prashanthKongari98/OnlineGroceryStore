@@ -1,0 +1,86 @@
+<section class="login-container flex-d">
+    <div class="form-group">
+      <label for="name" class="mr-b-10">Name</label>
+      <input class="wd-25"type="text" id="name" [(ngModel)]="name" placeholder="Enter your name" required>
+    </div>
+    <div class="form-group">
+      <label for="phone" class="mr-b-10">Phone Number</label>
+      <input class="wd-25"type="number" id="phone"  [(ngModel)]="phoneNumber" (change)="validatePhoneNumber($event)" placeholder="Enter your phone number" required>
+      <div class="error-message" *ngIf="!isPhoneNumberValid">Invalid Phone Number</div>
+    </div>
+    <div class="form-group">
+      <label for="email" class="mr-b-10">Email</label>
+      <input class="wd-25"type="email" id="email"  [(ngModel)]="email" placeholder="Enter your email" required>
+      <span  *ngIf="!isValidEmail(email)" class="error-message"> Invalid email format</span> 
+      
+    </div>
+    <div class="form-group">
+      <label for="password" class="mr-b-10">Password</label>
+      <input class="wd-25"type="password" id="password"  [(ngModel)]="password" placeholder="Enter your password" required>
+    </div>
+    <div class="form-group">
+      <label for="password" class="mr-b-10">Confirm Password</label>
+      <input class="wd-25"type="password" id="password"  [(ngModel)]="confirmPassword" (change)="checkPasswordValidation()"placeholder="Enter your password" required>
+      <span  *ngIf="!isPasswordNotValid" class="error-message"> Password Mismatch</span> 
+    </div>
+    <div class="form-group" id="admin-fields">
+      <label for="address">Address</label>
+      <input class="wd-25" type="text"  [(ngModel)]="address"  id="address" placeholder="Enter Address">
+    </div>
+    <div class="form-group">
+      <label for="role" class="mr-b-10">Role</label>
+      <div class="role-radio">
+        <input type="radio" id="deliveryExe" name="role" value="deliveryExe" (change) ="OnRadioBtnChange($event)">
+        <label for="deliveryExe" class="mr-20 mr-t-5">Delivery Executive</label>
+        
+    </div>
+
+    <div class="role-radio">
+        <input type="radio" id="admin" name="role" value="customer" (change) ="OnRadioBtnChange($event)">
+        <label for="admin" class="mr-20 mr-t-5">Customer</label>
+      </div>
+    </div>
+
+</section>
+
+
+
+<section class="login-container" *ngIf="role == 'deliveryExe'">
+    <div class="form-group" id="admin-fields">
+      <label for="accountNumber">Account Number</label>
+      <input class="wd-25" type="text"  [(ngModel)]="accountNumber"  id="accountNumber" placeholder="Enter account number">
+      <span  *ngIf="!AccountNumberValidation(accountNumber)" class="error-message"> Invalid Account Number</span> 
+    </div>
+    <div class="form-group" id="admin-fields">
+      <label for="routingNumber">Routing Number</label>
+      <input class="wd-25"type="text" id="routingNumber" [(ngModel)]="routingNumber"  placeholder="Enter routing number">
+      <span  *ngIf="!RoutingNumberValidation(routingNumber)" class="error-message"> Invalid Routing Number</span> 
+    </div>
+    <div class="form-group" id="admin-fields">
+      <label for="accountHolderName">Name of Account Holder</label>
+      <input class="wd-25"type="text" id="accountHolderName"  [(ngModel)]="accountHolderName"  placeholder="Enter account holder name">
+    </div>  
+    <div class="form-group" id="admin-fields">
+      <label for="accountHolderName">SSN</label>
+      <input class="wd-25"type="text" id="ssn"  [(ngModel)]="ssn"  placeholder="Enter SSN">
+    </div>  
+    <div class="form-group" id="admin-fields">
+      <label for="bankName">Name of Bank</label>
+      <input class="wd-25"type="text" id="bankName"  [(ngModel)]="bankName"  placeholder="Enter bank name">
+    </div>  
+   
+
+</section>
+
+<section class="login-container">
+  <div class="form-group">
+    <button type="submit" class="sub-btn" (click)="onSubmit()">Submit</button>
+  </div>
+</section>
+
+<section class="login-container">
+    <p class="ft-s-30">
+        Already have an account <a routerLink="/login" routerLinkActive="active">Login</a>
+    </p>
+</section>
+  

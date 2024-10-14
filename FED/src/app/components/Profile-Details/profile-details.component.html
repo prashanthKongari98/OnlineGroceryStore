@@ -1,0 +1,38 @@
+<form (ngSubmit)="updateProfile()" *ngIf="loginService.profileDetails" #profileForm="ngForm">
+    <div class="profile-details">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="loginService.profileDetails.name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="loginService.profileDetails.email" required>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="loginService.profileDetails.password" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone"  name="phone" [(ngModel)]="loginService.profileDetails.phoneNumber" required>
+      </div>
+      <div *ngIf="!loginService.isCustomer">
+        <div class="form-group">
+          <label for="accountHolderName">Account Holder Name:</label>
+          <input type="text" id="accountHolderName" name="accountHolderName" [(ngModel)]="loginService.profileDetails.nameOnCard" required>
+        </div>
+        <div class="form-group">
+          <label for="accountNumber">Account Number:</label>
+          <input type="number" id="accountNumber" name="accountNumber" [(ngModel)]="loginService.profileDetails.accountNumber" required>
+        </div>
+        <div class="form-group">
+          <label for="routingNumber">Routing Number:</label>
+          <input type="number" id="routingNumber" name="routingNumber" [(ngModel)]="loginService.profileDetails.routingNumber" required>
+        </div>
+
+      </div>
+    
+      <button type="submit">Update Profile</button>
+    </div>
+  </form>
+  

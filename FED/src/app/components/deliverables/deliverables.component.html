@@ -1,0 +1,13 @@
+<div class="deliverables-list">
+    <div class="deliverables-item" *ngFor="let item of deliverablesItems">
+      <div class="deliverables-header" (click)="toggleItemDetails(item)">
+        <span class="item-location">{{ item.title }}</span>
+        <!-- <span class="item-price">{{ item.price | currency }}</span>
+        <span class="item-delivery-time">{{ item.deliveryTime }}</span> -->
+      </div>
+      <div class="item-details" *ngIf="item.showDetails">
+        <!-- Additional item details go here -->
+      </div>
+    </div>
+  </div>
+  

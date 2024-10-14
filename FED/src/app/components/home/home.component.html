@@ -1,0 +1,178 @@
+<section class="items-grid" *ngIf="loginService.isCustomer">
+  <aside class="sidebar">
+    <h3>Categories</h3>
+    <div class="custom-dropdown">
+      <div class="dropdown">
+        <button class="dropdown-toggle c-b" placeholder="Select Categories to filter by toggling"
+          (click)="toggleDropdown()">
+          Select Categories to filter by toggling
+         
+        </button>
+
+        <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }">
+          <div *ngFor="let category of categories">
+            <input type="checkbox" [value]="category._id" (change)="onCategoryChange($event)">
+            {{ category.categoryName }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</section>
+
+<section class="items-grid" *ngIf="loginService.isCustomer">
+
+  <div class="item" *ngFor="let item of products">
+    <img [src]="item.product_URL" alt="{{ item.name }}" />
+    <h2>{{ item.name }}</h2>
+    <p>{{ item.category }}</p>
+    <div class="item-footer pd-b-13">
+      <span class="item-price">{{ item.price_Per_Each }}</span>
+      
+    </div>
+    <div class="item-footer pd-b-13">
+      <span><label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" step="1" class="quant-wd" [(ngModel)]="item.quantity"></span>
+        <button (click)="addToCart(item)">Add to Cart</button>
+    </div>
+  </div>
+  <div *ngIf="products.length == 0 " class="mr-l-180 pd-15">
+    <span class="c-r">No Products with selected Category</span>
+  </div>
+</section>
+
+<section *ngIf="loginService.isAdmin">
+  <div>
+    <div *ngIf="!isAddNewProdBtnClicked && !isAddNewCatBtnClicked">
+      <div >
+        <button class="margins sub-btn"  (click)="addNewProdBtnClicked()">
+          Add New Product
+        </button>
+        <button class="margins sub-btn"  (click)="addNewCatBtnClicked()">
+          Add New Category
+        </button>
+        <span class="dropdown margins">
+          <button class="dropdown-toggle c-b" placeholder="Select Categories to filter by toggling"
+            (click)="toggleDropdown()">
+            Select Categories to filter by toggling
+           
+          </button>
+  
+          <div class="dropdown-menu " [ngClass]="{ 'show': isDropdownOpen }">
+            <div *ngFor="let category of categories">
+              <input type="checkbox" [value]="category._id" (change)="onCategoryChange($event)">
+              {{ category.categoryName }}
+            </div>
+          </div>
+        </span>
+      </div>
+      <div  class="items-grid" >
+        <div class="item" *ngFor="let item of products">
+          <img [src]="item.product_URL" alt="{{ item.name }}" />
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.category }}</p>
+          <div class="item-footer">
+            <span class="product-price" *ngIf="!item.isEditProductBtnClicked">{{ item.price_Per_Each }}</span>
+            <input class="wd-25" type="number"  *ngIf="item.isEditProductBtnClicked" [(ngModel)]="price_Per_Each">
+          </div>
+          <div class="form-group"  *ngIf="item.isEditProductBtnClicked">
+            <label for="role" class="mr-b-10">Is Avaliable Stock</label>
+            <div class="role-radio">
+              <input type="radio" id="yes" name="stock" value="Yes" [(ngModel)]="item.availability" (change) ="OnRadioBtnChange($event, item)">
+              <label for="yes" class="mr-20 mr-t-5">Yes</label>
+              
+          </div>
+      
+          <div class="role-radio">
+              <input type="radio" id="no" name="stock" value="No" [(ngModel)]="item.availability" (change) ="OnRadioBtnChange($event, item)">
+              <label for="no" class="mr-20 mr-t-5" >No</label>
+            </div>
+          </div>
+          <div *ngIf="!item.isEditProductBtnClicked">
+            <button class="sub-btn"(click)="editProduct(item)">
+              Edit Product
+            </button>
+          </div>
+          <div *ngIf="item.isEditProductBtnClicked">
+            <button class="margins sub-btn"(click)="onProductAddSubmit(item)">
+              Update Product
+            </button>
+            <button class="margins sub-btn"(click)="cancel(item)">
+              cancel
+            </button>
+          </div>
+        </div>
+
+        
+      </div>
+      </div>
+
+      <div class="login-container" *ngIf="isAddNewCatBtnClicked">
+        
+        <section  >
+          <div class="form-group">
+            <label class="mr-b-10">Category Name:</label>
+            <input class="wd-25" type="text" [(ngModel)]="name">
+          </div>
+            <div class="form-group">
+              <label for="isReturnable" class="mr-b-10">Is Returnable</label>
+              <div class="role-radio">
+                <input type="radio" id="Yes" name="isReturnable" value="Yes" (change) ="OnRadioBtnForIsRetChange($event)">
+                <label for="Yes" class="mr-20 mr-t-5">Yes</label>
+                
+            </div>
+        
+            <div class="role-radio">
+                <input type="radio" id="No" name="isReturnable" value="No" (change) ="OnRadioBtnForIsRetChange($event)">
+                <label for="No" class="mr-20 mr-t-5">No</label>
+              </div>
+            </div>
+        
+          
+          <button class="sub-btn margins" type="submit" (click)="onCatAddSubmit()">Add Category</button>
+          <button class="sub-btn margins " type="submit" (click)="backClicked()">>>Back</button>
+        </section>
+        </div>
+
+      <div class="login-container" *ngIf="isAddNewProdBtnClicked">
+        
+      <section  >
+        <div class="form-group">
+          <label class="mr-b-10">Product Name:</label>
+          <input class="wd-25" type="text" [(ngModel)]="name">
+        </div>
+        <div class="form-group">
+          <label class="mr-b-10">Category:</label>
+            <div class="category-radio" *ngFor="let category of categories">
+              <input type="radio" id="category._id" name="category" [value]="category._id" (change) ="onCategorySelect($event)">
+              <label for="category._id" class="mr-20 mr-t-5">{{category.categoryName}}</label>
+              
+          </div> 
+      
+          
+        </div>
+        <div class="form-group">
+          <label class="mr-b-10">Price Per Each:</label>
+          <input class="wd-25" type="number" [(ngModel)]="price_Per_Each">
+        </div>
+        <div class="form-group">
+          <label class="mr-b-10">Image:</label>
+          <input type="text"  class="wd-25" [(ngModel)]="product_URL">
+        </div>
+        <button class="sub-btn margins" type="submit" (click)="onProductAddSubmit()">Add Product</button>
+        <button class="sub-btn margins " type="submit" (click)="backClicked()">>>Back</button>
+      </section>
+
+
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<div *ngIf="loginService.isDeliveryExec">
+  <app-deliverables></app-deliverables>
+</div>

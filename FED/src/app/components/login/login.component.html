@@ -1,0 +1,25 @@
+<section class="center">
+  <span class="c-r" *ngIf="loginService.showDeliveryErrMsg"> The Executive is not approved by Admin</span>
+</section>
+
+
+<section class=" login-container">
+  <div class="form-group">
+    <label for="email" class="mr-b-10">Email</label>
+    <input class="wd-25"type="email" id="email" [(ngModel)]="email" placeholder="Enter your email" required>
+  </div>
+  <div class="form-group">
+    <label for="password" class="mr-b-10">Password</label>
+    <input class="wd-25"type="password" id="password"  [(ngModel)]="password" placeholder="Enter your password" required>
+  </div>
+</section>
+
+<section class=" login-container pd-l-21">
+  <button type="submit" class="sub-btn" (click)="onLogin()">Login</button>
+</section>
+
+<section class=" login-container mr-l-170">
+  <p>
+    Create New Account <a routerLink="/register" routerLinkActive="active">Register</a>
+  </p>
+</section>

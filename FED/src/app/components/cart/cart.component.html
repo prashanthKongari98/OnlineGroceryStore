@@ -1,0 +1,88 @@
+<div class="cart-list" *ngIf="!cartService.showPaymentSection">
+  <div class="cart-item" *ngFor="let item of cartItems">
+    <div class="cart-header" (click)="toggleItemDetails(item)">
+      <span class="item-title">Product Name: {{ item.name }}</span>
+      <span class="item-price">Quantity: {{ item.quantity }}</span>
+      <span class="item-price">Total Amount: {{ item.total }}</span>
+      <span class="item-price">Product Price: {{ item.price_Per_Each }}</span>
+    </div>
+    <div class="item-details pd-15" *ngIf="item.showDetails">
+
+      <span class="pd-15"><label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" min="1" step="1" class="quant-wd"
+          (change)="updateTotal(item)" [(ngModel)]="item.quantity"></span>
+      <div class="item-details pd-15">
+        <span class="item-price">Total Price: {{ item.total }}</span>
+      </div>
+
+      <div class="pd-15">
+        <button class="mr-l-10 sub-btn" (click)="updateCartItem(item)">Update Cart Item</button>
+        <button class="mr-l-10 sub-btn" (click)="remove(item)">Remove From Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!cartService.showPaymentSection && cartItems.length > 0" class="mr-l-180 pd-15">
+  <button class="sub-btn" (click)="buyNow()">buy now</button>
+</div>
+
+<div *ngIf="!cartService.showPaymentSection && cartItems.length == 0" class="mr-l-180 pd-15">
+  <span class="c-r">No Items in cart to display</span>
+</div>
+
+
+<div *ngIf="cartService.showPaymentSection">
+  <section class="login-container">
+    <div class="form-group">
+      <label for="deliveryOption" class="mr-b-10">Select Delivery Option</label>
+      <div class="role-radio">
+        <input type="radio" id="deliveryExe" name="deliveryOption" value="ByExecutive" (change) ="OnRadioBtnChange($event)">
+        <label for="deliveryExe" class="mr-20 mr-t-5">By Delivery Executive</label>
+        
+    </div>
+
+    <div class="role-radio">
+        <input type="radio" id="StorePickup" name="deliveryOption" value="StorePickup" (change) ="OnRadioBtnChange($event)">
+        <label for="StorePickup" class="mr-20 mr-t-5">Store Pickup</label>
+      </div>
+    </div>
+  </section>
+  <section *ngIf="cartService.selectedDeliveryOption == 'By Executive'" class="login-container">
+    <div class="form-group">
+
+      <label class="mr-r-15  margins label-style-register">
+        Address Line 1:
+        <input class="mr-r-15  mr-l-61 select-style" type="text" [(ngModel)]="cartService.addressDetails.addressLine1" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="mr-r-15 margins label-style-register">
+        Address Line 2:
+        <input class="mr-r-15  mr-l-15 select-style" type="text" [(ngModel)]="cartService.addressDetails.addressLine2" />
+      </label>
+  
+    </div>
+    <div class="form-group">
+      <label class="mr-r-15 margins label-style-register">
+        ZipCode:
+        <input class="mr-r-15 mr-l-53 select-style" type="text" [(ngModel)]="cartService.addressDetails.zip" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="mr-r-15 margins label-style-register">
+        City:
+        <input class="mr-r-15 mr-l-53 select-style" type="text" [(ngModel)]="cartService.addressDetails.city" />
+      </label>
+    </div>
+    <div class="form-group">
+      <label class="mr-r-15 margins label-style-register">
+        State:
+        <input class="mr-r-15 mr-l-53 select-style" type="text" [(ngModel)]="cartService.addressDetails.state" />
+      </label>
+    </div>
+
+  </section>
+  <app-payments (cartItems)="cartItems"></app-payments>
+
+</div>

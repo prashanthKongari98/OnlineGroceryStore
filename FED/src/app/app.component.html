@@ -1,0 +1,20 @@
+
+<header>
+  <nav>
+    <ul>
+
+      <li *ngIf="!loginService.isLoginSuccessful"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+      <li *ngIf="!loginService.isLoginSuccessful"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li *ngIf="loginService.isLoginSuccessful && !loginService.isDeliveryExec"><a routerLink="/home" routerLinkActive="active">Home</a></li>
+      <li  *ngIf="loginService.isLoginSuccessful"><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
+      <li  *ngIf="loginService.isLoginSuccessful"><a routerLink="/profileDetails" routerLinkActive="active">Profile Details</a></li>
+      <li *ngIf="loginService.isLoginSuccessful && loginService.isCustomer"><a routerLink="/cart" routerLinkActive="active">Cart</a></li>
+      <li *ngIf="loginService.isLoginSuccessful && loginService.isAdmin"><a routerLink="/deliveryExecutives"  routerLinkActive="active">Delivery Executives</a></li>      
+      <li *ngIf="loginService.isLoginSuccessful"><a routerLink="/register" (click)="logOut()" routerLinkActive="active">LogOut</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
+<app-notification-msg></app-notification-msg>

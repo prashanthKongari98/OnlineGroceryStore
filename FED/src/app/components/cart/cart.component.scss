@@ -1,0 +1,137 @@
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cart-item {
+    width: 80%;
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+    //transition: background-color 0.3s;
+    background: #dfd2d5d4;
+  }
+  
+  .cart-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+  .item-title {
+    font-weight: bold;
+  }
+  
+  .item-details {
+    margin-top: 10px;
+  }
+  
+  .cart-item.show-details .item-details {
+    display: block;
+  }
+  
+  .pd-15{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .quant-wd{
+    width: 41px;
+  }
+  
+
+  .sub-btn{
+    height: 35px;
+    width: 100px;
+    background-color: #2c86e6 ;
+    
+      margin-top: 20px !important;
+      border-radius: 5px !important;
+      border: none;
+  }
+
+  .mr-l-180{
+    margin-left: 146px;
+  }
+
+  .mr-l-10{
+    margin-left: 10px;
+  }
+
+    
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  margin-top: 25px;
+}
+
+.login-container {
+  background: #e7d9dc99;
+  margin: 0 auto;
+  margin-top: 30px !important;
+  width: 80%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  /* Center the content vertically and horizontally */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 18px;
+  }
+  
+  input {
+    height: 24px;
+    padding: 5px;
+    font-size: 16px;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 14px;
+  }
+  
+  .role-radio {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .wd-90{
+    width: 90%  !important;
+  }
+
+  select{
+    height: 37px;
+    padding: 5px;
+    font-size: 16px;
+  }
+
+  .mr-b-10{
+    margin-bottom: 10px;
+  }
+
+  .c-r{
+    color: red;
+    font-style: bold;
+    align-items: center;
+    font-weight: bolder;
+  }
